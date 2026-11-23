@@ -4,11 +4,12 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
+    origin: '*',
     exposedHeaders: ['X-Response-Time-Ms'],
   });
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
-  console.log(`🚀 API de Gamificación (TypeScript/NestJS) activa en: http://localhost:${port}/api/v1/gamificacion`);
+  await app.listen(port, '0.0.0.0');
+  console.log(`🚀 API de Gamificación activa en puerto ${port}`);
 }
 bootstrap();
